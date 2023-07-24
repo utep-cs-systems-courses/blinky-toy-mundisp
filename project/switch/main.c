@@ -10,7 +10,7 @@
 #define SW2 BIT1
 #define SW3 BIT2
 #define SW4 BIT3
-#define SWITCHES (SW1)		/* only 1 switch on this board */
+#define SWITCHES (SW1 | SW2 | SW3 | SW4)		/* only 1 switch on this board */
 
 void main(void) 
 {  
@@ -29,14 +29,14 @@ void main(void)
 void
 switch_interrupt_handler()
 {
-  char p1val = P2IN;		/* switch is in P1 */
+  char p2val = P2IN;		/* switch is in P1 */
 
 /* update switch interrupt sense to detect changes from current buttons */
-  P2IES |= (p1val & SWITCHES);	/* if switch up, sense down */
-  P2IES &= (p1val | ~SWITCHES);	/* if switch down, sense up */
+  P2IES |= (p2val & SWITCHES);	/* if switch up, sense down */
+  P2IES &= (p2val | ~SWITCHES);	/* if switch down, sense up */
 
 /* up=red, down=green */
-  if (p1val & SW1) {
+  if (p2val & SW1) {
     P2OUT &= ~LED_RED;
     P2OUT  |= LED_GREEN;
   } else {
