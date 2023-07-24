@@ -30,7 +30,6 @@ void
 switch_interrupt_handler()
 {
   char p1val = P2IN;		/* switch is in P1 */
-
 /* update switch interrupt sense to detect changes from current buttons */
   P2IES |= (p1val & SWITCHES);	/* if switch up, sense down */
   P2IES &= (p1val | ~SWITCHES);	/* if switch down, sense up */
