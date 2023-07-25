@@ -1,13 +1,5 @@
 all:
-	(cd timerLib && make install)
-	(cd 1-led && make)
-	(cd dimmer && make)
-	(cd buzzer && make)
-        (cd switches && make)
+	(cd switches && make)
 clean:
-	(cd timerLib && make clean)
-	(cd 1-led && make clean)
-	(cd dimmer && make clean)
-	(cd buzzer && make clean)
 	(cd switches && make clean)
 	rm -rf h lib

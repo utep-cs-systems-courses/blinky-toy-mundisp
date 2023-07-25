@@ -9,6 +9,7 @@
 
 void led_init();		/* initialize LEDs */
 void led_update();		/* update leds */
+void turn_on_leds();
 //void toggle();
 
 // these are boolean flags

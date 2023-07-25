@@ -1,10 +1,13 @@
 ## Description
 
-greenControl() is moved out of main.c into greenControl-c.c.  GreenControl-s.s also contains a version in assy lang.
+This version of the previous demo has distinct (sets of) functions implement each state machine. 
 
-The Makefile builds two executables.  One with the C version.  The
-other uses the assy version.
+This modularization is commonly used to make it easier to understand programs.
+
+This modularization also can bloat the code, which, ironically, can
+make short programs more difficult to understand.
 
 ## Suggested Activities
 
-* Move more functions to assy lang.
+* Improve the program & comments & use of whitepace to make the
+  program easier to understand.
