@@ -2,11 +2,8 @@
 #include "libTimer.h"
 #include "buzzer.h"
 #include "buzzer.c"
-//#include "dimmer.c"
-
-#define LED_RED BIT0               // P1.0
-#define LED_GREEN BIT6             // P1.6
-#define LEDS (BIT0 | BIT6)
+#include "led.h"
+#include "dimmer.c"
 
 #define SW1 BIT3 /* switch1 is p1.3 */
 #define SW2 BIT1
@@ -57,14 +54,12 @@ switch_interrupt_handler()
 
     buzzer_init();
     generateSound();
-
-  }
-  if(p2val & SW3){
     
-    //  timeAdvStateMachines();
-
   }
 
+  if(p2val & SW3){
+    enableWDTInterrupts();
+  }
   
 }
 

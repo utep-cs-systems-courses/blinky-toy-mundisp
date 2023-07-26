@@ -1,7 +1,7 @@
 #include <msp430.h>
 #include "libTimer.h"
- 
-
+#include "led.h" 
+#include "buzzer.h"
 
 void greenControl(int on)
 {
@@ -49,11 +49,29 @@ void timeAdvStateMachines() // called every 1/250 sec
 }
 
 
- 
 
-void __interrupt_vec(WDT_VECTOR) WDT()	// 250 interrupts/sec 
+
+// global state var to count time
+int secondCount = 0;
+
+void
+__interrupt_vec(WDT_VECTOR) WDT()	/* 250 interrupts/sec */
 {
-  // handle blinking   
-  timeAdvStateMachines();
+  secondCount ++;
+  if (secondCount >= 100) { 	/* once each sec... */
+    secondCount = 0;		/* reset count */
+    P1OUT ^= LED_GREEN;		/* toggle green LED */
+    if(LED_GREEN){
+
+      buzzer_init();
+      generateSound();
+      
+    }
+    else{
+      buzzer_set_period(0);
+      
+    }
+  }
 } 
+
 
